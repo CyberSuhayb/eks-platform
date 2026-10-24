@@ -14,4 +14,5 @@ module "eks" {
   cluster_name        = "eks-platform-dev"
   subnet_ids          = module.vpc.private_subnet_ids
   public_access_cidrs = [var.admin_cidr]
+  node_instance_types = ["m7i-flex.large", "c7i-flex.large"]
 }
