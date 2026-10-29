@@ -33,3 +33,9 @@ variable "node_max_size" {
   type    = number
   default = 3
 }
+
+variable "cluster_version" {
+  description = "Kubernetes version for the cluster"
+  type        = string
+  default     = "1.37"
+}

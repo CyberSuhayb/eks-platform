@@ -22,8 +22,15 @@ resource "aws_iam_role_policy_attachment" "cluster" {
 # ---------- EKS cluster ----------
 resource "aws_eks_cluster" "this" {
   name     = var.cluster_name
-  role_arn = aws_iam_role.cluster.arn
-  # Version not pinned yet: AWS uses its current default. Pin once confirmed.
+  role_arn = aws_iam_role.cluster.arn 
+
+    version = var.cluster_version
+
+  # STANDARD avoids automatic (and ~6x pricier) extended support
+  upgrade_policy {
+    support_type = "STANDARD"
+  }
+  
 
   vpc_config {
     subnet_ids              = var.subnet_ids
